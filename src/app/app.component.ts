@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   id1: any
   id2: any
 
+  test_count: any = [];
+
   input() {
     this.dialog.open(ComponentComponent);
   }
@@ -39,33 +41,33 @@ export class AppComponent implements OnInit {
   sma() {
     this._auth.getSmabyid(this.id2).then((res: any) => {
       this.result = res
+      for (let index = 0; index < this.result.length; index++) {
+        this.test_count[index] = index;
+        // console.log(this.test_count)
+      }
       this.sma_signal = this.result.map(function (index: any) {
         return index.signal
       })
-      // this.sma_test = this.result.map(function (index: any) {
-      //   return index.test
-      // })
+
       // console.log(this.sma_signal)
       // console.log(this.sma_test)
     })
   }
-
-  home() {
-    this._auth.getHome().then((res: any) => {
-      this.result = res
-      // console.log(this.result)
-    })
-  }
-
   pcb() {
     if (this.set1 === true && this.set2 === false) {
       this._auth.getPcbbyid(this.id1).then((res: any) => {
+        for (let index = 0; index < res.length; index++) {
+          this.test_count[index] = index;
+          // console.log(this.test_count)
+        }
         this.pcb_test = res.map(function (index: any) {
+          // console.log(index.test)
           return index.test
         })
         this.pcb_signal = res.map(function (index: any) {
           return index.signal
         })
+        // console.log(this.test_count.toString())
         this.pcbChart()
       })
     } else {
@@ -86,6 +88,7 @@ export class AppComponent implements OnInit {
             this.sma_signal = this.result.map(function (index: any) {
               return index.signal
             })
+            
             this.pcbChart()
           })
         } else {
@@ -93,14 +96,13 @@ export class AppComponent implements OnInit {
         }
       })
     }
-
   }
 
   pcbChart() {
     this.chart = new Chart('canvas', {
       type: 'line',
       data: {
-        labels: this.pcb_test,
+        labels:this.test_count,
         datasets: [{
           label: 'pcb antenna',
           data: this.pcb_signal,
@@ -156,25 +158,25 @@ export class AppComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void {
     this.id1 = localStorage.getItem('id1')
     this.id2 = localStorage.getItem('id2')
-    if (this.id1) {
-      this.set1 = true
+    if (this.id1 === null) {
+      // console.log('id1 is null')
+      this.set1 = false
     } else {
-      // console.log('no id1')
+      this.set1 = true
+      // console.log('id1')
     }
 
-    if (this.id2) {
-      this.set2 = true
-      // console.log('has id-2')
+    if (this.id2 === null) {
+      // console.log('id2 is null')
     } else {
-      // console.log('no id2')
+      this.set2 = true
     }
 
     if (this.set1 === false) {
-      // alert('No id present')
+      alert('No id present')
       // console.log('no id present')
     } else {
       // this._auth.getPcbbyid(this.id1)

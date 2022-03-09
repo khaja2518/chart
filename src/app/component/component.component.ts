@@ -16,26 +16,31 @@ export class ComponentComponent implements OnInit {
   id1d: any
   id2data: boolean = false;
   id2d: any
+  
   submit() {
-    this.id1d = localStorage.getItem('id1')
-    this.id2d = localStorage.getItem('id2')
-
-    if (this.idForm.valid) {
-      if (this.id1d !== null) {
-        this.id1data = true;
-      } else if (this.id1data === false) {
-        localStorage.setItem('id1', this.idForm.value.id1)
-      }
-
-      if (this.id2d !== null) {
-        this.id2data = true
-      } else {
-        localStorage.setItem('id2', this.idForm.value.id2)
-      }
-      // localStorage.setItem('id1', this.idForm.value.id1)
-      // localStorage.setItem('id2', this.idForm.value.id2)
-      window.location.reload();
+    localStorage.clear()
+    console.log("id1=", this.idForm.value.id1)
+    console.log("id2=", this.idForm.value.id2)
+    if ((this.idForm.value.id1) === "") {
+      alert('PCB id is null')
+      // console.log("Id 1 is null")
+    } else {
+      localStorage.setItem('id1', this.idForm.value.id1)
     }
+    if ((this.idForm.value.id2) === "") {
+      alert('SMA id is null')
+      // console.log("Id 2 is null")
+    } else {
+      localStorage.setItem('id2', this.idForm.value.id2)
+    }
+    if ((this.idForm.value.id2) === "" && (this.idForm.value.id1) === "") {
+      alert('No id')
+      // console.log("Id 2 is null")
+    } else {
+      // localStorage.setItem('id2', this.idForm.value.id2)
+    }
+
+    window.location.reload();
   }
 
   ngOnInit(): void {

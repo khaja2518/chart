@@ -1,6 +1,6 @@
 .example-card {
     margin: 0 auto;
-    max-width: 750px;
+    /* max-width: 500px; */
 }
 
 #card {
@@ -9,10 +9,11 @@
 }
 
 .chart {
-    width: 700px;
-    height: 400px;
+    display: block;
+    width: 1000px;
+    /* height: 1000px; */
 }
 
-#butt{
+#butt {
     margin-left: 10px;
 }

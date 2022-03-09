@@ -1,4 +1,4 @@
-<div *ngIf="id1 !=null">
+<div *ngIf="id1 !=null || id2 !=null">
     <div id="card">
         <mat-card class="example-card">
             <mat-card-header>
@@ -10,7 +10,7 @@
                     <canvas id="canvas"></canvas>
                 </div>
             </mat-card-content>
-            <mat-card-actions class="actions" >
+            <mat-card-actions class="actions">
                 <button id="butt" mat-raised-button color="primary" (click)="input()">New Input</button>
                 <button id="butt" mat-flat-button color="warn" (click)="reload()">Reload</button>
             </mat-card-actions>
