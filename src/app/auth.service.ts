@@ -16,7 +16,7 @@ export class AuthService {
     // console.log("id-",id)
     // console.log(this.pcburlbyid.concat(id.toString()))
     return this.http.get(this.herokuPcbUrlbyId.concat(id.toString())).toPromise().then((data) => {
-      // console.log(data)
+      console.log(data)
       return data
     })
   }
