@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
         this.pcb_signal = res.map(function (index: any) {
           return index.signal
         })
-        // console.log(this.test_count.toString())
+        console.log(this.test_count)
         this.pcbChart()
       })
     } else {
