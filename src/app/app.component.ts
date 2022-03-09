@@ -139,7 +139,7 @@ export class AppComponent implements OnInit {
             display: true,
             title: {
               display: true,
-              text: 'Number of Tests Performed',
+              text: 'Elapsed Time in Mins',
               font: {
                 size: 12,
                 family: 'tahoma',
