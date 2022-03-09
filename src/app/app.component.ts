@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     })
   }
   pcb() {
-    if (this.set1 === true && this.set2 === false) {
+    if (this.set2 === false && this.set1 == true) {
       this._auth.getPcbbyid(this.id1).then((res: any) => {
         for (let index = 0; index < res.length; index++) {
           this.test_count[index] = index;
@@ -67,13 +67,18 @@ export class AppComponent implements OnInit {
         this.pcb_signal = res.map(function (index: any) {
           return index.signal
         })
-        console.log(this.test_count)
+        // console.log(this.test_count)
         this.pcbChart()
+        this.chart.resize();
       })
     } else {
       this._auth.getPcbbyid(this.id1).then((res: any) => {
-
+        for (let index = 0; index < res.length; index++) {
+          this.test_count[index] = index;
+          // console.log(this.test_count)
+        }
         this.pcb_test = res.map(function (index: any) {
+         
           return index.test
         })
 
@@ -88,7 +93,7 @@ export class AppComponent implements OnInit {
             this.sma_signal = this.result.map(function (index: any) {
               return index.signal
             })
-            
+            // console.log("test count", this.test_count)
             this.pcbChart()
           })
         } else {
@@ -102,7 +107,7 @@ export class AppComponent implements OnInit {
     this.chart = new Chart('canvas', {
       type: 'line',
       data: {
-        labels:this.test_count,
+        labels: this.test_count,
         datasets: [{
           label: 'pcb antenna',
           data: this.pcb_signal,
@@ -120,6 +125,9 @@ export class AppComponent implements OnInit {
         ]
       },
       options: {
+        interaction: {
+          intersect: false
+        },
         plugins: {
           title: {
             display: true,
@@ -172,6 +180,7 @@ export class AppComponent implements OnInit {
     if (this.id2 === null) {
       // console.log('id2 is null')
     } else {
+      // console.log('id2')
       this.set2 = true
     }
 
